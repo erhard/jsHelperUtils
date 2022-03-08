@@ -1,13 +1,13 @@
-export const readLocalStorage = (key) => {
+const readLocalStorage = (key) => {
   const value = localStorage.getItem(key);
   return JSON.parse(value)
 }
 
-export const deleteFromLocalStorage = (key) =>{
+const deleteFromLocalStorage = (key) =>{
   localStorage.setItem(key, value);
 }
 
-export const store2LocalStorage = (key, obj)=> {
+const store2LocalStorage = (key, obj)=> {
   const value = JSON.stringify(obj)
   localStorage.setItem(key, value);
 }
@@ -72,5 +72,8 @@ export default {
   isObjectInArray,
   deepCopy,
   deleteElArFromElAr,
-  findObjectInArray
+  findObjectInArray,
+  readLocalStorage,
+  deleteFromLocalStorage,
+  store2LocalStorage 
 }
