@@ -60,3 +60,18 @@ describe("find Object in Array", () => {
     expect(result).toBeFalsy();
   });
 });
+
+
+describe('getIndex of Object in Array',()=> {
+it('should get the Index of Ute', ()=>{
+const arr = [
+ {name: "franz", alter: 12},
+ {name: "Ute", alter: 33}, 
+ {name:"Sabine", alter: 99}
+]
+const index = utils.getIndexOfObjectInArray(arr, "name", "ute");
+expect(index).toBe(1);
+
+
+})
+})

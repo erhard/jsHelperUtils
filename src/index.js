@@ -66,6 +66,16 @@ const findObjectInArray= (arr, field, value)=>{
 }
 
 
+  const getIndexOfObjectInArray=(arr,field,value,caseSensitive=false) => {
+    const index = arr.findIndex(element => {
+      if (caseSensitive){ 
+      return element[field]==value;
+      }else{
+        return element[field].toLowerCase()==value.toLowerCase()
+      }
+    })
+    return(index);
+  }
 
 export default {
   sortArrayByField,
@@ -75,5 +85,7 @@ export default {
   findObjectInArray,
   readLocalStorage,
   deleteFromLocalStorage,
-  store2LocalStorage 
+  store2LocalStorage,
+  getIndexOfObjectInArray
+
 }
