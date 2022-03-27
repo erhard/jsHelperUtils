@@ -71,6 +71,15 @@ const arr = [
 ]
 const index = utils.getIndexOfObjectInArray(arr, "name", "ute");
 expect(index).toBe(1);
+})
+})
+
+describe('make array unique',()=> {
+it('should make an array unique', ()=>{
+  const arr = ["1", 1, 2, 3, "4", 4, "4"]
+  const result = utils.makeArrayUnique(arr)
+  console.log(result)
+  expect(result.sort()).toEqual(["1",1,2,3,"4",4].sort())
 
 
 })

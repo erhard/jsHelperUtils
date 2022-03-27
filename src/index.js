@@ -77,6 +77,21 @@ const findObjectInArray= (arr, field, value)=>{
     return(index);
   }
 
+
+  function timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+
+  const sleep = async function (time) {
+    await timeout(time);
+  }; 
+
+  const makeArrayUnique = (inputArray) => {
+    const retAr = Array.from(new Set(inputArray));
+    return retAr;
+  }
+
 export default {
   sortArrayByField,
   isObjectInArray,
@@ -86,6 +101,7 @@ export default {
   readLocalStorage,
   deleteFromLocalStorage,
   store2LocalStorage,
-  getIndexOfObjectInArray
-
+  getIndexOfObjectInArray,
+  sleep,
+  makeArrayUnique
 }
