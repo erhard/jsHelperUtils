@@ -42,7 +42,6 @@ describe("delete Elements from Array", () => {
     const arr = ["A", "B", "C", "D", "E"];
     const delArr = ["C", "D"];
     const result = utils.deleteElArFromElAr(delArr, arr);
-    console.log(result);
     expect(result).toEqual(["A", "B", "E"]);
   });
 });
@@ -74,13 +73,110 @@ expect(index).toBe(1);
 })
 })
 
+describe('findMultiple',()=> {
+const arr = [
+ {name: "franz", alter: 12},
+ {name: "Ute", alter: 33}, 
+ {name:"Sabine", alter: 99},
+ {name: "Ute", alter: 200}, 
+]
+it('should find twice casesensitive', ()=>{
+const index_arr = utils.findMultiple(arr, "name", "Ute");
+expect(index_arr).toEqual([1,3]);
+})
+
+it('should find twice caseinsensitive', ()=>{
+const index_arr = utils.findMultiple(arr, "name", "ute",true);
+expect(index_arr).toEqual([1,3]);
+})
+
+
+
+})
+
 describe('make array unique',()=> {
 it('should make an array unique', ()=>{
   const arr = ["1", 1, 2, 3, "4", 4, "4"]
   const result = utils.makeArrayUnique(arr)
-  console.log(result)
   expect(result.sort()).toEqual(["1",1,2,3,"4",4].sort())
+})
+})
 
+
+describe('role based selection',()=> {
+//example is a menu creating
+   it('should recurce the roles', ()=>{
+  const roles =createFakeRoles()
+  const result = utils.recurseTree("admin",roles)
+  expect(result.sort()).toEqual(["admin", "group1", "group3", "group4"])
+  })
+it('should select entries from an Array according to roles', ()=>{
+let testarr=[]
+const roles =createFakeRoles()
+const menu = createFakeMenu()
+const result = utils.roleBasedSelection(menu, roles, ["admin"])
+result.forEach(element => {
+  testarr.push(element.key)
+})
+expect(testarr).toEqual(["m1","m3","m4","m5"])
+})
+})
+
+
+
+
+
+
+
+describe('uniquify array with objects',()=> {
+it('should uniquify a array according a key', ()=>{
+  const arr = [
+    {key: "a1", payload: "whatever"},
+    {key: "a2", payload: "whatever"},
+    {key: "a2", payload: "whatever"},
+    {key: "a1", payload: "whatever"},
+    {key: "a1", payload: "whatever"},
+    {key: "a3", payload: "whatever"}
+]
+  const result = utils.makeObjectArrayUnique(arr,"key")
+  expect(result).toEqual([
+    {key: "a1", payload: "whatever"},
+    {key: "a2", payload: "whatever"},
+    {key: "a3", payload: "whatever"}
+  ]
+    
+    ) 
 
 })
 })
+
+
+const createFakeRoles= () =>{
+  const roles = [
+    {name: "group4", sub: ["group1"]}, 
+    {name: "admin",  sub: ["group1",  "group3", "group4"]},
+    {name: "group2"}   
+   ]
+   return roles
+}
+
+const createFakeMenu=()=>{
+const menu = [
+  {key: "m1" ,
+  payload: {title: "Menu1", caption: "this is menu1", link: "/pages1", icon: "home"},
+  roles: ["admin", "group1"]},
+  {key: "m2", 
+  payload: {title: "Menu2", caption: "this is menu2", link: "/pages2", icon: "home"},
+  roles: [ "group2"]},
+  {key: "m3", 
+  payload: {title: "Menu3", caption: "this is menu3", link: "/pages3", icon: "home"},
+  roles: ["admin", "group3"]},
+  {key: "m4", 
+  payload: {title: "Menu4", caption: "this is menu4", link: "/pages4", icon: "home"},
+  roles: ["group4"]},
+  {key: "m5", 
+  payload: {title: "Menu5", caption: "this is menu5", link: "/pages5", icon: "home"},
+  roles: ["admin"]},
+  ]
+return menu
+}
