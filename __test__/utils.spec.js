@@ -103,6 +103,30 @@ it('should make an array unique', ()=>{
 })
 
 
+describe('replaceElementsInArray', ()=>{
+  it('should replace all occurances of ute with gabi', ()=>{
+     let array = [
+      {name: "Peter", data: "1"},
+      {name: "Ute", data: "2"},
+      {name: "Peter", data: "3"},
+      {name: "Ute", data: "4"}]
+      const result = utils.replaceArrayElementsBy(array,
+        {name: "Gabi", data: 12}, "name", "Ute")
+        
+      expect(result).toEqual([
+        {name: "Peter", data: "1"},
+        {name: "Gabi", data: 12},
+        {name: "Peter", data: "3"},
+        {name: "Gabi", data: 12}
+
+
+      ])
+  })
+})
+
+
+
+
 describe('role based selection',()=> {
 //example is a menu creating
    it('should recurce the roles', ()=>{

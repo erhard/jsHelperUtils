@@ -134,7 +134,16 @@ const findObjectInArray= (arr, field, value)=>
   return data
   }
 
-
+  const replaceArrayElementsBy=(array, object, searchField, searchContent)=>{
+     const retVal = array.map(element=>{
+       if (element[searchField]==searchContent){
+         return object
+       } else {
+        return element
+       }
+     })
+     return retVal 
+  } 
 
 
   //data :  {key: String, roles: [String], payload: any}
@@ -188,5 +197,6 @@ export default {
   roleBasedSelection,
   recurseTree,
   findMultiple,
-  makeObjectArrayUnique
+  makeObjectArrayUnique,
+  replaceArrayElementsBy
 }
