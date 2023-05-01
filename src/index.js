@@ -174,8 +174,27 @@ const findObjectInArray= (arr, field, value)=>
   }
    
    
-   
-   
+ const createPathFromElements = (elArr) => {
+  let path = "";
+  elArr.forEach((el) => {
+    //clean the elements than add the elements
+    if (el) {
+      if (el.slice(-1) == "/") {
+        el = el.slice(0, -1);
+      }
+      if (el.charAt(0) == "/") {
+        el = el.slice(1);
+      }
+
+      path = path + "/" + el;
+    }
+  });
+  if (path.charAt(0) == "/") {
+    path = path.slice(1);
+  }
+  return path;
+};
+
    
    
 
@@ -198,5 +217,6 @@ export default {
   recurseTree,
   findMultiple,
   makeObjectArrayUnique,
-  replaceArrayElementsBy
+  replaceArrayElementsBy,
+  createPathFromElements 
 }
