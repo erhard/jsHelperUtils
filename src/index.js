@@ -12,6 +12,17 @@ const store2LocalStorage = (key, obj)=> {
   localStorage.setItem(key, value);
 }
 
+ const delObjectFromArr = (arr, callback) => {
+  var i = arr.length;
+  while (i--) {
+    if (callback(arr[i], i)) {
+      arr.splice(i, 1);
+    }
+  }
+  return arr;
+};
+
+
 
 const deleteElArFromElAr=(elAr, targetAr)=> {
   try{
@@ -206,6 +217,7 @@ export default {
   isObjectInArray,
   deepCopy,
   deleteElArFromElAr,
+  delObjectFromArr,
   findObjectInArray,
   readLocalStorage,
   deleteFromLocalStorage,

@@ -232,3 +232,22 @@ describe("create Path from arrayElements", () => {
     expect(result).toEqual("A/b/C");
   });
 });
+
+describe("delete object from Array", () => {
+  it("should delete an element if a codeblock gives true", () => {
+    let arr = [
+      { id: "1", name: "Alice" },
+      { id: "2", name: "Bob" },
+      { id: "3", name: "Elli" },
+    ];
+    const result = (utils.delObjectFromArr
+      (arr,
+      (element, index) => {
+        return element.name == "Bob";
+      }));
+    expect(result).toEqual([
+      { id: "1", name: "Alice" },
+      { id: "3", name: "Elli" },
+    ]);
+  });
+});
