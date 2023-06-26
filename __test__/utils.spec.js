@@ -4,11 +4,22 @@ import utils from "../index.js";
 describe("sort", () => {
   test("sort with fildName alphabetical", () => {
     const arr = [{ name: "A" }, { name: "C" }, { name: "B" }];
-    const res = utils.sortArrayByField({ array: arr, field: "name" });
+    const res = utils.sortArrayByField( arr, "name");
     expect(res[0].name).toBe("A");
     expect(res[1].name).toBe("B");
     expect(res[2].name).toBe("C");
   });
+
+  test("sort numeric fields", () => {
+    const arr = [{ order : 1 }, { order: 3 }, { order: 2 }];
+    const res = utils.sortArrayByField(  arr,  "order" );
+    expect(res[0].order).toBe(1);
+    expect(res[1].order).toBe(2);
+    expect(res[2].order).toBe(3);
+  });
+
+
+
 });
 
 describe("isObjectInArray", () => {
