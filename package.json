@@ -1,6 +1,6 @@
 {
   "name": "jshelperutils",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Utilities used in most projects",
   "main": "index.js",
   "scripts": {

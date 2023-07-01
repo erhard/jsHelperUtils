@@ -19,6 +19,21 @@ describe("sort", () => {
   });
 
 
+  test("sort numeric fields with only one element", () => {
+    const arr = [{ order : 0 }];
+    const res = utils.sortArrayByField(  arr,  "order" );
+    expect(res[0].order).toBe(0);
+  });
+
+
+  test("sort with fildName alphabetical one field only", () => {
+    const arr = [{ name: "A" }];
+    const res = utils.sortArrayByField( arr, "name");
+    expect(res[0].name).toBe("A");
+  });
+
+
+
 
 });
 
@@ -80,6 +95,17 @@ describe("getIndex of Object in Array", () => {
     ];
     const index = utils.getIndexOfObjectInArray(arr, "name", "ute");
     expect(index).toBe(1);
+  });
+
+
+  it("should return -1 if object is not in array", () => {
+    const arr = [
+      { name: "franz", alter: 12 },
+      { name: "Ute", alter: 33 },
+      { name: "Sabine", alter: 99 },
+    ];
+    const index = utils.getIndexOfObjectInArray(arr, "name", "Peter");
+    expect(index).toBe(-1);
   });
 });
 
