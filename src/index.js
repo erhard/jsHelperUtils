@@ -4,7 +4,7 @@ const readLocalStorage = (key) => {
 };
 
 const deleteFromLocalStorage = (key) => {
-  localStorage.setItem(key, value);
+  localStorage.removeItem(key);
 };
 
 const store2LocalStorage = (key, obj) => {
